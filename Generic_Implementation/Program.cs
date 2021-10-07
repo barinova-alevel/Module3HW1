@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Generic_Implementation
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Product[] rangeProducts = new Product[5]
         {
@@ -34,22 +34,22 @@ namespace Generic_Implementation
             products.Remove(products[1]);
             products.RemoveAt(2);
             PrintArrayElements(products);
-            
             Console.WriteLine();
             Console.WriteLine($"Access by index 4: {products[4].Name}");
             Console.WriteLine("Access by index 416: {products[416].Name}");
 
             Console.WriteLine("After sorting:");
-            products.Sort();
-            PrintArrayElements(products);
 
+            products.Sort((IComparer<Product>)products);
+            PrintArrayElements(products);
             void PrintArrayElements(List<Product> product)
             {
                 foreach (Product p in product)
                 {
-                    Console.WriteLine($"Product id: {p.ProductId.ToString()}, Product name: { p.Name}, Price: { p.Price.ToString()}");
+                    Console.WriteLine($"Product id: {p.ProductId.ToString()}, Product name: {p.Name}, Price: {p.Price.ToString()}");
                 }
             }
+
             Console.ReadKey();
         }
     }
