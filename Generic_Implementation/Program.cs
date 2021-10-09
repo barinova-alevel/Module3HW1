@@ -7,6 +7,8 @@ namespace Generic_Implementation
     {
         public static void Main(string[] args)
         {
+            var myList = new MyList<int>(5) { 4, 7, 2, 9 };
+            var array = new MyList<int> { 9, 8, 5, 6, 4, 3, 1, 4, 2 };
             Product[] rangeProducts = new Product[5]
         {
         new Product() { Name = "RangeProductName1", Price = 10.0, ProductId = 3 },
@@ -21,6 +23,36 @@ namespace Generic_Implementation
             products.Add(new Product() { Name = "Name3", Price = 10.5, ProductId = 1 });
             products.Add(new Product() { Name = "Name4", Price = 15.5, ProductId = 02 });
 
+            myList.AddRange(array);
+
+            myList.Capacity = 2;
+
+            Console.WriteLine("Before remove");
+            Console.WriteLine($"Count = {myList.Count} Capacity = {myList.Capacity}");
+
+            foreach (var item in myList)
+            {
+                Console.Write($"{item} ");
+            }
+
+            myList.Remove(4);
+            myList.RemoveAt(4);
+
+            myList.Sort(new IntComparer());
+
+            Console.WriteLine();
+
+            Console.WriteLine("After remove and sort");
+
+            Console.WriteLine($"Count = {myList.Count} Capacity = {myList.Capacity}");
+
+            foreach (var item in myList)
+            {
+                Console.Write($"{item} ");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("List of products:");
             PrintArrayElements(products);
 
             products.AddRange(rangeProducts);
@@ -40,7 +72,7 @@ namespace Generic_Implementation
 
             Console.WriteLine("After sorting:");
 
-            products.Sort((IComparer<Product>)products);
+            // products.Sort((IComparer<Product>)products);
             PrintArrayElements(products);
             void PrintArrayElements(List<Product> product)
             {
